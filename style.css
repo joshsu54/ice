@@ -25,17 +25,43 @@ body {
 
 /* ─── 頂部導航列 ─────────────────────────────────── */
 header {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; 由 nav-list 自動分佈 */
+  padding: 0.5rem 1rem;
   position: sticky;
   top: 0;
   background: var(--primary);
   border-bottom: 2px solid var(--secondary);
   z-index: 100;
 }
+
+/* 切換按鈕（只在手機顯示） */
+#nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .2s;
+  margin-right: 0.5rem;
+}
+
+/* 收合後隱藏選單，並旋轉箭頭 */
+header.collapsed #nav-toggle {
+  transform: rotate(180deg);
+}
+header.collapsed .nav-list {
+  display: none;
+}
+
+/* 導航選單 */
 .nav-list {
+  flex: 1;
   display: flex;
   justify-content: space-around;
   list-style: none;
-  padding: 0.75rem 1rem;
 }
 .nav-list li a {
   text-decoration: none;
@@ -255,8 +281,11 @@ header {
   background: #757575;
 }
 
-/* ─── 響應式：手機時直排 ────────────────────────────── */
+/* ─── 響應式：手機時直排 & 顯示切換按鈕 ───────────────── */
 @media (max-width: 600px) {
+  #nav-toggle {
+    display: block;
+  }
   .nav-list {
     flex-direction: column;
   }
