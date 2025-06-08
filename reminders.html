@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>效期提醒</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="common.js"></script>
+</head>
+<body>
+  <nav>
+    <ul class="nav-list">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="inventory.html">食材管理</a></li>
+      <li class="active"><a href="reminders.html">效期提醒</a></li>
+      <li><a href="recipes.html">食譜建議</a></li>
+      <li><a href="health.html">健康追蹤</a></li>
+    </ul>
+  </nav>
+  <main class="section active">
+    <h2>📋 效期提醒</h2>
+    <ul class="notifications-list" id="reminder-list"></ul>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ul = document.getElementById('reminder-list');
+      const list = getReminders(2);
+      ul.innerHTML = list.map(item => {
+        const diff = Math.ceil((new Date(item.exp) - new Date()) / (1000*60*60*24));
+        const text = diff > 0 ? `${diff} 天後過期` : '今天到期';
+        return `<li>📢 ${item.name} ${text}</li>`;
+      }).join('');
+    });
+  </script>
+</body>
+</html>

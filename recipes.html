@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>食譜建議</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="common.js"></script>
+</head>
+<body>
+  <nav>
+    <ul class="nav-list">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="inventory.html">食材管理</a></li>
+      <li><a href="reminders.html">效期提醒</a></li>
+      <li class="active"><a href="recipes.html">食譜建議</a></li>
+      <li><a href="health.html">健康追蹤</a></li>
+    </ul>
+  </nav>
+  <main class="section active">
+    <h2>🍳 食譜建議</h2>
+    <div class="recipe-list"></div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.recipe-list');
+      const invNames = getInventory().map(i => i.name);
+      const recipesDB = [
+        { name: '菠菜蛋餅', needs: ['菠菜', '雞蛋'] },
+        { name: '牛奶布丁', needs: ['牛奶'] },
+        { name: '紅蘿蔔湯', needs: ['紅蘿蔔'] }
+      ];
+      const candidates = recipesDB.filter(r =>
+        r.needs.every(ing => invNames.includes(ing))
+      );
+      container.innerHTML = candidates.length
+        ? candidates.map(r => `
+            <div class="recipe-card">
+              <h3>${r.name}</h3>
+              <p>材料：${r.needs.join('、')}</p>
+            </div>
+          `).join('')
+        : '<p>目前無可做食譜</p>';
+    });
+  </script>
+</body>
+</html>

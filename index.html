@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>智慧冰箱 App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── 頂部導航列 ───────────────────────────────────── -->
+  <header>
+    <nav>
+      <ul class="nav-list">
+        <li class="active"><a href="#home">首頁概覽</a></li>
+        <li><a href="#inventory">庫存列表</a></li>
+        <li><a href="#notifications">通知中心</a></li>
+        <li><a href="#recipes">食譜建議</a></li>
+        <li><a href="#settings">設定</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 首頁概覽 -->
+    <section id="home" class="section active">
+      <div class="overview-card">
+        <h2>庫存總覽</h2>
+        <p>目前共 0 項食材，0 項即將到期</p>
+      </div>
+      <div class="overview-card">
+        <h2>近期提醒</h2>
+        <ul>
+          <!-- 由 JS 動態填入 -->
+        </ul>
+      </div>
+
+      <!-- 功能捷徑 -->
+      <section class="action-bar">
+        <button id="btn-add">
+          <div class="icon">➕</div>
+          <div class="label">新增食材</div>
+        </button>
+        <button>
+          <div class="icon">🔍</div>
+          <div class="label">掃描辨識</div>
+        </button>
+        <button>
+          <div class="icon">📋</div>
+          <div class="label">查看食譜</div>
+        </button>
+      </section>
+
+      <!-- 四大功能卡片（可點擊切換） -->
+      <section class="features-grid">
+        <div class="feature-card" data-target="inventory">
+          <div class="icon">📦</div>
+          <h3>食材管理</h3>
+          <p>記錄數量與效期</p>
+        </div>
+        <div class="feature-card" data-target="notifications">
+          <div class="icon">📋</div>
+          <h3>效期提醒</h3>
+          <p>避免浪費</p>
+        </div>
+        <div class="feature-card" data-target="recipes">
+          <div class="icon">🔍</div>
+          <h3>食譜建議</h3>
+          <p>依食材與偏好提供建議</p>
+        </div>
+        <div class="feature-card" data-target="settings">
+          <div class="icon">❤️</div>
+          <h3>健康追蹤</h3>
+          <p>分析飲食行為，提出改善建議</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- 庫存列表 -->
+    <section id="inventory" class="section">
+      <h2>庫存列表</h2>
+      <table class="inventory-table">
+        <thead>
+          <tr><th>食材</th><th>數量</th><th>效期</th></tr>
+        </thead>
+        <tbody>
+          <!-- 由 JS 動態增減 -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 通知中心 -->
+    <section id="notifications" class="section">
+      <h2>通知中心</h2>
+      <ul class="notifications-list">
+        <!-- 由 JS 動態填入 -->
+      </ul>
+    </section>
+
+    <!-- 食譜建議 -->
+    <section id="recipes" class="section">
+      <h2>食譜建議</h2>
+      <div class="recipe-list">
+        <div class="recipe-card">
+          <h3>菠菜蛋餅</h3>
+          <p>材料：菠菜、雞蛋、麵粉</p>
+        </div>
+        <div class="recipe-card">
+          <h3>牛奶布丁</h3>
+          <p>材料：牛奶、糖、吉利丁</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 設定頁面 -->
+    <section id="settings" class="section">
+      <h2>設定</h2>
+      <form class="settings-form">
+        <label>推播頻率：
+          <select>
+            <option>每日</option>
+            <option>每週</option>
+            <option>關閉</option>
+          </select>
+        </label>
+        <label>通知時間：
+          <input type="time" value="08:00"/>
+        </label>
+        <button type="submit">儲存設定</button>
+      </form>
+    </section>
+
+    <!-- 新增食材頁面 -->
+    <section id="add" class="section">
+      <h2>新增食材</h2>
+      <form id="add-form" class="add-form">
+        <label>
+          食材名稱：
+          <input type="text" id="item-name" required />
+        </label>
+        <label>
+          數量：
+          <input type="text" id="item-qty" required />
+        </label>
+        <label>
+          效期：
+          <input type="date" id="item-expiry" required />
+        </label>
+        <div class="form-buttons">
+          <button type="submit">新增</button>
+          <button type="button" id="add-cancel">取消</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>健康追蹤</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="common.js"></script>
+</head>
+<body>
+  <nav>
+    <ul class="nav-list">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="inventory.html">食材管理</a></li>
+      <li><a href="reminders.html">效期提醒</a></li>
+      <li><a href="recipes.html">食譜建議</a></li>
+      <li class="active"><a href="health.html">健康追蹤</a></li>
+    </ul>
+  </nav>
+  <main class="section active">
+    <h2>❤️ 健康追蹤</h2>
+    <p id="calories">載入中...</p>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const inv = getInventory();
+      const calDB = { '牛奶': 50, '雞蛋': 70, '菠菜': 20 };
+      const totalCal = inv.reduce((sum, i) =>
+        sum + (calDB[i.name] || 30) * Number(i.qty), 0);
+      document.getElementById('calories').innerText =
+        `今日攝取熱量估算：${totalCal} kcal`;
+    });
+  </script>
+</body>
+</html>
