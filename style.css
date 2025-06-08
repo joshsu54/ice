@@ -1,61 +1,50 @@
-/* ─── 色彩變數 ───────────────────────────────────── */
 :root {
   --primary: #4CAF50;
   --primary-light: #E8F5E9;
   --secondary: #FF9800;
   --secondary-light: #FFF3E0;
   --bg: #F7F7F7;
-  --card-bg: #FFFFFF;
-  --text-primary: #333333;
-  --text-secondary: #666666;
+  --card-bg: #fff;
+  --text-primary: #333;
+  --text-secondary: #666;
 }
 
-/* ─── 全局設定 ───────────────────────────────────── */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* 全局重置 */
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--text-primary);
   font-family: sans-serif;
   line-height: 1.5;
 }
 
-/* ─── 頂部導航列 ─────────────────────────────────── */
+/* header */
 header {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   position: sticky;
   top: 0;
   background: var(--primary);
   border-bottom: 2px solid var(--secondary);
   z-index: 100;
 }
-
-/* 切換按鈕（只在行動版顯示） */
+/* 切換按鈕（行動版顯示） */
 #nav-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 1.2rem;
   color: #fff;
-  margin-right: 0.5rem;
+  margin-right: .5rem;
   cursor: pointer;
   transition: transform .2s;
 }
-
 /* 收合後隱藏選單並旋轉箭頭 */
-header.collapsed #nav-toggle {
-  transform: rotate(180deg);
-}
-header.collapsed .nav-list {
-  display: none;
-}
+header.collapsed #nav-toggle { transform: rotate(180deg); }
+header.collapsed .nav-list { display: none; }
 
-/* 導航選單 */
+/* 導航列 */
 .nav-list {
   flex: 1;
   display: flex;
@@ -63,50 +52,32 @@ header.collapsed .nav-list {
   list-style: none;
 }
 .nav-list li a {
-  text-decoration: none;
-  font-weight: bold;
   color: #fff;
-  padding: 0.5rem 1rem;
-  display: block;
+  text-decoration: none;
+  padding: .5rem 1rem;
   border-radius: 4px;
   transition: background .2s;
 }
-.nav-list li a:hover {
-  background: var(--primary-light);
-  color: var(--primary);
-}
-.nav-list li.active a {
-  background: var(--secondary);
-  color: #fff;
-}
+.nav-list li a:hover { background: var(--primary-light); color: var(--primary); }
+.nav-list li.active a { background: var(--secondary); }
 
-/* ─── 區段顯示 ───────────────────────────────────── */
-.section {
-  display: none;
-  padding: 1rem;
-}
-.section.active {
-  display: block;
-}
+/* 區段 */
+.section { display: none; padding: 1rem; }
+.section.active { display: block; }
 
-/* ─── 概覽卡片 ───────────────────────────────────── */
+/* 概覽卡片 */
 .overview-card {
-  background-color: var(--primary-light);
+  background: var(--primary-light);
   border-left: 4px solid var(--primary);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
 }
-.overview-card h2 {
-  color: var(--primary);
-}
+.overview-card h2 { color: var(--primary); }
 .overview-card p,
-.overview-card ul li {
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-}
+.overview-card ul li { color: var(--text-secondary); margin-top: .5rem; }
 
-/* ─── 功能捷徑 ───────────────────────────────────── */
+/* 功能捷徑 */
 .action-bar {
   display: flex;
   justify-content: space-around;
@@ -126,18 +97,10 @@ header.collapsed .nav-list {
   background: var(--primary);
   transform: translateY(-2px);
 }
-.action-bar .icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-}
-.action-bar .label {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
+.action-bar .icon { font-size: 1.5rem; margin-bottom: .5rem; color: var(--primary); }
+.action-bar .label { display: block; font-size: .9rem; color: var(--text-primary); }
 
-/* ─── 四大功能卡片 Grid ───────────────────────────────── */
+/* 四大功能卡片 */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -158,48 +121,35 @@ header.collapsed .nav-list {
   transform: translateY(-6px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
-.feature-card .icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-  color: var(--secondary);
-}
-.feature-card h3 {
-  font-size: 1.25rem;
-  margin: 8px 0;
-  color: var(--text-primary);
-}
-.feature-card p {
-  font-size: 1rem;
-  color: var(--text-secondary);
-}
+.feature-card .icon { font-size: 2.5rem; margin-bottom: 12px; color: var(--secondary); }
+.feature-card h3 { font-size: 1.25rem; color: var(--text-primary); margin: 8px 0; }
+.feature-card p { color: var(--text-secondary); }
 
-/* ─── 庫存列表（Table） ───────────────────────────── */
+/* 庫存列表 */
 .inventory-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
-.inventory-table th,
-.inventory-table td {
-  padding: 0.75rem;
-  text-align: left;
+.inventory-table th, .inventory-table td {
+  padding: .75rem;
   border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 .inventory-table tbody tr:nth-child(even) {
   background: var(--secondary-light);
 }
 
-/* ─── 通知列表 ───────────────────────────────────── */
+/* 通知列表 */
 .notifications-list li {
   background: var(--card-bg);
   border-left: 4px solid var(--primary);
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
+  padding: .75rem;
+  margin-bottom: .5rem;
   border-radius: 4px;
-  color: var(--text-primary);
 }
 
-/* ─── 食譜卡片 ───────────────────────────────────── */
+/* 食譜卡片 */
 .recipe-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -212,44 +162,33 @@ header.collapsed .nav-list {
   padding: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
-.recipe-card h3 {
-  color: var(--secondary);
-}
-.recipe-card p {
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-}
+.recipe-card h3 { color: var(--secondary); }
+.recipe-card p { color: var(--text-secondary); margin-top: .5rem; }
 
-/* ─── 設定表單按鈕 ───────────────────────────────── */
+/* 設定表單 */
 .settings-form button {
   background: var(--primary);
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   cursor: pointer;
   transition: background .2s;
 }
-.settings-form button:hover {
-  background: var(--secondary);
-}
+.settings-form button:hover { background: var(--secondary); }
 
-/* ─── 新增食材表單 ─────────────────────────────────── */
+/* 新增食材表單 */
 .add-form {
   max-width: 400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
-.add-form label {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-}
+.add-form label { margin-bottom: 1rem; color: var(--text-primary); }
 .add-form input {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
+  padding: .5rem;
+  margin-top: .25rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -259,45 +198,28 @@ header.collapsed .nav-list {
 }
 .form-buttons button {
   flex: 1;
-  padding: 0.5rem;
+  padding: .5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background .2s;
 }
 .form-buttons button[type="submit"] {
-  background: var(--primary);
-  color: #fff;
+  background: var(--primary); color: #fff;
 }
 .form-buttons button[type="submit"]:hover {
   background: var(--secondary);
 }
 #add-cancel {
-  background: #9E9E9E;
-  color: #fff;
+  background: #9E9E9E; color: #fff;
 }
 #add-cancel:hover {
   background: #757575;
 }
 
-/* ─── 響應式：手機時直排 & 顯示切換按鈕 ───────────────── */
-@media (max-width: 600px) {
-  #nav-toggle {
-    display: block;
-  }
-  .nav-list {
-    flex-direction: column;
-  }
-  .nav-list li + li {
-    margin-top: 0.25rem;
-  }
-  .action-bar {
-    flex-direction: column;
-  }
-  .action-bar button + button {
-    margin-top: 0.5rem;
-  }
-  .features-grid {
-    gap: 12px;
-  }
+/* 響應式：手機版顯示切換按鈕 & nav 直排 */
+@media (max-width:600px) {
+  #nav-toggle { display: block; }
+  .nav-list { flex-direction: column; }
+  .nav-list li+li { margin-top: .25rem; }
 }

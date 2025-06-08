@@ -10,14 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelBtn      = document.getElementById('add-cancel');
   const inventoryTbody = document.querySelector('#inventory .inventory-table tbody');
 
-  // 切換顯示區段
+  // 切換區段
   function showSection(id) {
     sections.forEach(sec => {
-      sec.id === id ? sec.classList.add('active') : sec.classList.remove('active');
+      sec.id === id
+        ? sec.classList.add('active')
+        : sec.classList.remove('active');
     });
   }
 
-  // 更新首頁概覽 & 通知中心
+  // 更新首頁概覽與通知中心
   function updateOverview() {
     const rows    = Array.from(inventoryTbody.querySelectorAll('tr'));
     const total   = rows.length;
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     rows.forEach(r => {
       const exp  = new Date(r.cells[2].innerText);
-      const diff = Math.ceil((exp - today) / (1000 * 3600 * 24));
+      const diff = Math.ceil((exp - today)/(1000*3600*24));
       if (diff <= 3) soonCount++;
     });
 
@@ -34,15 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#home .overview-card:nth-child(1) p')
       .innerText = `目前共 ${total} 項食材，${soonCount} 項即將到期`;
 
-    // 首頁提醒列表
+    // 首頁提醒
     const list = document.querySelector('#home .overview-card:nth-child(2) ul');
     list.innerHTML = '';
     rows.forEach(r => {
       const name = r.cells[0].innerText;
       const exp  = new Date(r.cells[2].innerText);
-      const diff = Math.ceil((exp - today) / (1000 * 3600 * 24));
-      const text = diff > 0 ? `${name}：${diff} 天後過期` : `${name}：今日過期`;
-      const li   = document.createElement('li');
+      const diff = Math.ceil((exp - today)/(1000*3600*24));
+      const text = diff>0
+        ? `${name}：${diff} 天後過期`
+        : `${name}：今日過期`;
+      const li = document.createElement('li');
       li.innerText = text;
       list.appendChild(li);
     });
@@ -53,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
     rows.forEach(r => {
       const name = r.cells[0].innerText;
       const exp  = new Date(r.cells[2].innerText);
-      const diff = Math.ceil((exp - today) / (1000 * 3600 * 24));
-      const text = diff > 0
+      const diff = Math.ceil((exp - today)/(1000*3600*24));
+      const text = diff>0
         ? `📢 ${name} ${diff} 天後過期`
         : `📢 ${name} 今日或已過期`;
-      const li   = document.createElement('li');
+      const li = document.createElement('li');
       li.innerText = text;
       notif.appendChild(li);
     });
@@ -83,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showSection(id);
       navLinks.forEach(li => {
         const h = li.querySelector('a').getAttribute('href').slice(1);
-        li.classList.toggle('active', h === id);
+        li.classList.toggle('active', h===id);
       });
     });
   });
@@ -110,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showSection('inventory');
       navLinks.forEach(li => {
         const h = li.querySelector('a').getAttribute('href').slice(1);
-        li.classList.toggle('active', h === 'inventory');
+        li.classList.toggle('active', h==='inventory');
       });
       addForm.reset();
     });
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showSection('home');
       navLinks.forEach(li => {
         const h = li.querySelector('a').getAttribute('href').slice(1);
-        li.classList.toggle('active', h === 'home');
+        li.classList.toggle('active', h==='home');
       });
     });
   }
@@ -135,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 導覽收合／展開（行動版）
+  // 行動版：導航列收合／展開
   if (toggleBtn) {
     if (window.innerWidth <= 600) header.classList.add('collapsed');
     toggleBtn.addEventListener('click', () => {
