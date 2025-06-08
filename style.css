@@ -1,13 +1,13 @@
 /* ─── 色彩變數 ───────────────────────────────────── */
 :root {
-  --primary: #4CAF50;          /* 主色：綠 */
-  --primary-light: #E8F5E9;    /* 主色淡 */
-  --secondary: #FF9800;        /* 次色：橙 */
-  --secondary-light: #FFF3E0;  /* 次色淡 */
-  --bg: #F7F7F7;               /* 頁面背景 */
-  --card-bg: #FFFFFF;          /* 卡片背景 */
-  --text-primary: #333333;     /* 主要文字 */
-  --text-secondary: #666666;   /* 次要文字 */
+  --primary: #4CAF50;
+  --primary-light: #E8F5E9;
+  --secondary: #FF9800;
+  --secondary-light: #FFF3E0;
+  --bg: #F7F7F7;
+  --card-bg: #FFFFFF;
+  --text-primary: #333333;
+  --text-secondary: #666666;
 }
 
 /* ─── 全局設定 ───────────────────────────────────── */
@@ -27,7 +27,6 @@ body {
 header {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; 由 nav-list 自動分佈 */
   padding: 0.5rem 1rem;
   position: sticky;
   top: 0;
@@ -36,19 +35,19 @@ header {
   z-index: 100;
 }
 
-/* 切換按鈕（只在手機顯示） */
+/* 切換按鈕（只在行動版顯示） */
 #nav-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 1.2rem;
   color: #fff;
+  margin-right: 0.5rem;
   cursor: pointer;
   transition: transform .2s;
-  margin-right: 0.5rem;
 }
 
-/* 收合後隱藏選單，並旋轉箭頭 */
+/* 收合後隱藏選單並旋轉箭頭 */
 header.collapsed #nav-toggle {
   transform: rotate(180deg);
 }

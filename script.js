@@ -1,21 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const header        = document.querySelector('header');
-  const toggleBtn     = document.getElementById('nav-toggle');
-  const sections      = document.querySelectorAll('.section');
-  const navLinks      = document.querySelectorAll('.nav-list li');
-  const featureCards  = document.querySelectorAll('.feature-card');
-  const settingsForm  = document.querySelector('.settings-form');
-  const addBtn        = document.getElementById('btn-add');
-  const addForm       = document.getElementById('add-form');
-  const cancelBtn     = document.getElementById('add-cancel');
-  const inventoryTbody= document.querySelector('#inventory .inventory-table tbody');
+  const header         = document.getElementById('header');
+  const toggleBtn      = document.getElementById('nav-toggle');
+  const sections       = document.querySelectorAll('.section');
+  const navLinks       = document.querySelectorAll('.nav-list li');
+  const featureCards   = document.querySelectorAll('.feature-card');
+  const settingsForm   = document.querySelector('.settings-form');
+  const addBtn         = document.getElementById('btn-add');
+  const addForm        = document.getElementById('add-form');
+  const cancelBtn      = document.getElementById('add-cancel');
+  const inventoryTbody = document.querySelector('#inventory .inventory-table tbody');
 
   // 切換顯示區段
   function showSection(id) {
     sections.forEach(sec => {
-      sec.id === id
-        ? sec.classList.add('active')
-        : sec.classList.remove('active');
+      sec.id === id ? sec.classList.add('active') : sec.classList.remove('active');
     });
   }
 
@@ -65,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 導覽列切換 ──────────────────────────
+  // 導覽列點擊
   navLinks.forEach(li => {
     const link = li.querySelector('a');
     link.addEventListener('click', e => {
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── 功能卡片點擊 ──────────────────────────
+  // 功能卡片點擊
   featureCards.forEach(card => {
     card.addEventListener('click', () => {
       const id = card.dataset.target;
@@ -90,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── 新增食材按鈕 ──────────────────────────
+  // 新增食材按鈕
   if (addBtn) {
     addBtn.addEventListener('click', () => {
       showSection('add');
@@ -98,20 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 新增食材表單提交 ───────────────────────
+  // 新增食材表單提交
   if (addForm) {
     addForm.addEventListener('submit', e => {
       e.preventDefault();
       const name   = document.getElementById('item-name').value.trim();
       const qty    = document.getElementById('item-qty').value.trim();
       const expiry = document.getElementById('item-expiry').value;
-      // 新增一行到表格
-      const tr = document.createElement('tr');
+      const tr     = document.createElement('tr');
       tr.innerHTML = `<td>${name}</td><td>${qty}</td><td>${expiry}</td>`;
       inventoryTbody.appendChild(tr);
-      // 更新概覽
       updateOverview();
-      // 切回庫存列表
       showSection('inventory');
       navLinks.forEach(li => {
         const h = li.querySelector('a').getAttribute('href').slice(1);
@@ -121,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 取消新增 ───────────────────────────────
+  // 取消新增
   if (cancelBtn) {
     cancelBtn.addEventListener('click', () => {
       showSection('home');
@@ -132,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 設定表單提示 ───────────────────────────
+  // 設定表單提示
   if (settingsForm) {
     settingsForm.addEventListener('submit', e => {
       e.preventDefault();
@@ -140,14 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 行動版：切換導航收合 ───────────────────
+  // 導覽收合／展開（行動版）
   if (toggleBtn) {
+    if (window.innerWidth <= 600) header.classList.add('collapsed');
     toggleBtn.addEventListener('click', () => {
       header.classList.toggle('collapsed');
     });
-    if (window.innerWidth <= 600) {
-      header.classList.add('collapsed');
-    }
   }
 
   // 初始化
